@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\OnBoardingDB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class OnBoarding extends Controller
 {
@@ -33,9 +37,13 @@ class OnBoarding extends Controller
             'message' => 'required|string|max:255',
         ]);
         //$request->user()->OnBoarding()->store($validated); ERRORRORORORRORRRRR, figure out why later
-        $request->user()->
+        $request->user()->employeereq()->create($validated);
         return redirect(route('employeereq.index'));
     }
+
+
+
+
 
     public function show(string $id)
     {
@@ -59,3 +67,7 @@ class OnBoarding extends Controller
         //
     }
 }
+
+
+
+
