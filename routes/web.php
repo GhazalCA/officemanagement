@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RQNController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Root url:
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+Route::get('/about', function () {
+    return view('about');
 });
 
 Route::get('/dashboard', function () {
@@ -29,11 +36,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
-/* Create routes: index, store */
+/* Create routes: index, store
 Route::resource('employeereq', \App\Http\Controllers\OnBoarding::class)
     ->only(['index', 'store', 'edit', 'update', 'destroy'])
     //index = all
-    ->middleware(['auth', 'verified']);
+    ->middleware(['auth', 'verified']);*/
 
+Route::resource('RQN', RQNController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
